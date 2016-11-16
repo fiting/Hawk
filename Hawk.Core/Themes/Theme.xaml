@@ -40,7 +40,9 @@
         <GradientStop Color="#4C000000" Offset="0.467" />
         <GradientStop Color="#26FFFFFF" Offset="0.479" />
     </LinearGradientBrush>
-
+    <ItemsPanelTemplate x:Key="MenuItemPanelTemplate">
+        <StackPanel  Background="{DynamicResource NormalBrush}"/>
+    </ItemsPanelTemplate>
     <SolidColorBrush x:Key="ControlBackgroundBrush" Color="#4C000000"/>
 
     <LinearGradientBrush x:Key="SelectedBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
@@ -120,9 +122,9 @@
     <Style TargetType="{x:Type Button}" BasedOn="{x:Null}">
         <Setter Property="FocusVisualStyle" Value="{DynamicResource NuclearButtonFocusVisual}" />
         <Setter Property="Background" >
-        	<Setter.Value>
-        		<SolidColorBrush Color="#FC183A58" />
-        	</Setter.Value>
+            <Setter.Value>
+                <SolidColorBrush Color="#FC183A58" />
+            </Setter.Value>
         </Setter>
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
@@ -366,7 +368,7 @@
                                 <BeginStoryboard Storyboard="{StaticResource CheckedFalse}"/>
                             </Trigger.EnterActions>
                         </Trigger>
-						    <Trigger Property="IsChecked" Value="True">
+                        <Trigger Property="IsChecked" Value="True">
                             <Trigger.ExitActions>
                                 <BeginStoryboard Storyboard="{StaticResource CheckedFalse}" />
                             </Trigger.ExitActions>
@@ -479,14 +481,14 @@
 
                         </Trigger>
                         <Trigger Property="IsChecked" Value="True">
-                        	       <Trigger.ExitActions>
+                            <Trigger.ExitActions>
                                 <BeginStoryboard x:Name="CheckedOFF_BeginStoryboard" Storyboard="{StaticResource CheckedOff}"/>
                             </Trigger.ExitActions>
                             <Trigger.EnterActions>
                                 <BeginStoryboard x:Name="CheckedON_BeginStoryboard" Storyboard="{StaticResource CheckedOn}"/>
-                            </Trigger.EnterActions>             
-						</Trigger>
-						
+                            </Trigger.EnterActions>
+                        </Trigger>
+
                         <Trigger Property="IsMouseOver" Value="true">
 
                             <Trigger.ExitActions>
@@ -642,9 +644,11 @@
             </Setter.Value>
         </Setter>
     </Style>
-	<Style TargetType="{x:Type ContextMenu}">
-		 <Setter Property="Background" Value="{DynamicResource NormalBrush}" />
-	</Style>
+    <Style TargetType="{x:Type ContextMenu}">
+        <Setter Property="Background" Value="{DynamicResource NormalBrush}" />
+        <Setter Property="ItemsPanel" Value="{StaticResource MenuItemPanelTemplate}"/>
+
+    </Style>
     <Style x:Key="NuclearScrollRepeatButtonStyle" d:IsControlPart="True" TargetType="{x:Type RepeatButton}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
@@ -846,32 +850,32 @@
     </Style>
 
     <!-- ListBox -->
-	<Style TargetType="{x:Type ListBox}">
-		<Setter Property="Padding" Value="1"/>
-		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}"/>
-		<Setter Property="Foreground" Value="#FF000000"/>
-		<Setter Property="HorizontalContentAlignment" Value="Left"/>
-		<Setter Property="VerticalContentAlignment" Value="Top"/>
-		<Setter Property="IsTabStop" Value="False"/>
-		<Setter Property="BorderThickness" Value="1"/>
-		<Setter Property="KeyboardNavigation.TabNavigation" Value="Once"/>
-		<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
-		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
-		<Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
-		<Setter Value="{StaticResource NormalBorderBrush}" Property="BorderBrush"/>
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type ListBox}">
-					<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2">
-						<ScrollViewer BorderBrush="Transparent" BorderThickness="0" Padding="{TemplateBinding Padding}" x:Name="ScrollViewer" >
-							<ItemsPresenter/>
-						</ScrollViewer>
-					</Border>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
-     
+    <Style TargetType="{x:Type ListBox}">
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}"/>
+        <Setter Property="Foreground" Value="#FF000000"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Top"/>
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="Once"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+        <Setter Value="{StaticResource NormalBorderBrush}" Property="BorderBrush"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBox}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2">
+                        <ScrollViewer BorderBrush="Transparent" BorderThickness="0" Padding="{TemplateBinding Padding}" x:Name="ScrollViewer" >
+                            <ItemsPresenter/>
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
     <Style d:IsControlPart="True" TargetType="{x:Type ListBoxItem}">
         <Setter Property="SnapsToDevicePixels" Value="true" />
@@ -1637,7 +1641,7 @@
 
 
     <Style TargetType="{x:Type TextBlock}">
-    	<Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
     </Style>
 
     <Style TargetType="{x:Type TextBox}">
@@ -1916,11 +1920,13 @@
         </Setter>
     </Style>
     <DropShadowBitmapEffect x:Key="PopupDropShadow" ShadowDepth="1.5" Softness="0.15" />
+
     <Style TargetType="{x:Type MenuItem}">
         <Setter Property="HorizontalContentAlignment" Value="{Binding Path=HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
         <Setter Property="VerticalContentAlignment" Value="{Binding Path=VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="ItemsPanel" Value="{StaticResource MenuItemPanelTemplate}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type MenuItem}">
@@ -2038,9 +2044,9 @@
             </Setter.Value>
         </Setter>
     </Style>
-	<Style   TargetType="{x:Type ToolTip}">
-		<Setter Property="Background" Value="Black"></Setter>
-		</Style>
+    <Style   TargetType="{x:Type ToolTip}">
+        <Setter Property="Background" Value="Black"></Setter>
+    </Style>
     <Style TargetType="{x:Type TabControl}">
         <Setter Property="Template">
             <Setter.Value>
@@ -2160,7 +2166,7 @@
         </Setter>
         <Setter Property="Background" Value="#FF393939"/>
     </Style>
-	
+
     <Style d:IsControlPart="True" TargetType="{x:Type TabItem}">
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="Template">
@@ -2597,35 +2603,35 @@
             </Setter.Value>
         </Setter>
     </Style>
-<Style TargetType="{x:Type ScrollViewer}">
-		<Setter Property="HorizontalContentAlignment" Value="Left"/>
-		<Setter Property="VerticalContentAlignment" Value="Top"/>
-		<Setter Property="Padding" Value="4"/>
-		<Setter Property="BorderThickness" Value="1"/>
-		<Setter Property="BorderBrush" Value="{StaticResource NormalBorderBrush}"/>
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type ScrollViewer}">
-					<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2">
-						<Grid Background="{TemplateBinding Background}">
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="*"/>
-								<ColumnDefinition Width="Auto"/>
-							</Grid.ColumnDefinitions>
-							<Grid.RowDefinitions>
-								<RowDefinition Height="*"/>
-								<RowDefinition Height="Auto"/>
-							</Grid.RowDefinitions>
-							<ScrollContentPresenter Cursor="{TemplateBinding Cursor}" Margin="{TemplateBinding Padding}" x:Name="ScrollContentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}"/>
-							<Rectangle Grid.Column="1" Grid.Row="1" Fill="#FFE9EEF4"/>
-							<ScrollBar IsTabStop="False" Margin="0,-1,-1,-1" x:Name="PART_VerticalScrollBar" Width="18" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" Grid.Column="1" Grid.Row="0" Orientation="Vertical" ViewportSize="{TemplateBinding ViewportHeight}" Maximum="{TemplateBinding ScrollableHeight}" Minimum="0" Value="{TemplateBinding VerticalOffset}" />
-							<ScrollBar IsTabStop="False" Height="18" Margin="-1,0,-1,-1" x:Name="PART_HorizontalScrollBar" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" Grid.Column="0" Grid.Row="1" Orientation="Horizontal" ViewportSize="{TemplateBinding ViewportWidth}" Maximum="{TemplateBinding ScrollableWidth}" Minimum="0" Value="{TemplateBinding HorizontalOffset}" />
-						</Grid>
-					</Border>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
+    <Style TargetType="{x:Type ScrollViewer}">
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Top"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="{StaticResource NormalBorderBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2">
+                        <Grid Background="{TemplateBinding Background}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <ScrollContentPresenter Cursor="{TemplateBinding Cursor}" Margin="{TemplateBinding Padding}" x:Name="ScrollContentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                            <Rectangle Grid.Column="1" Grid.Row="1" Fill="#FFE9EEF4"/>
+                            <ScrollBar IsTabStop="False" Margin="0,-1,-1,-1" x:Name="PART_VerticalScrollBar" Width="18" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" Grid.Column="1" Grid.Row="0" Orientation="Vertical" ViewportSize="{TemplateBinding ViewportHeight}" Maximum="{TemplateBinding ScrollableHeight}" Minimum="0" Value="{TemplateBinding VerticalOffset}" />
+                            <ScrollBar IsTabStop="False" Height="18" Margin="-1,0,-1,-1" x:Name="PART_HorizontalScrollBar" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" Grid.Column="0" Grid.Row="1" Orientation="Horizontal" ViewportSize="{TemplateBinding ViewportWidth}" Maximum="{TemplateBinding ScrollableWidth}" Minimum="0" Value="{TemplateBinding HorizontalOffset}" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <Style x:Key="ButtonFocusVisual">
         <Setter Property="Control.Template">
