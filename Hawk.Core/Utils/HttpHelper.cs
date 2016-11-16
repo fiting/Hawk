@@ -402,6 +402,7 @@ namespace Hawk.Core.Utils
             if (!string.IsNullOrEmpty(postdata) && request.Method.Trim().ToLower().Contains("post"))
             {
                 var buffer = Encoding.Default.GetBytes(postdata);
+                request.ContentType = "application/x-www-form-urlencoded";
                 request.ContentLength = buffer.Length;
                 request.GetRequestStream().Write(buffer, 0, buffer.Length);
             }
