@@ -62,8 +62,9 @@
                         <ContextMenu  DataContext="{Binding Data.Commands, Source={StaticResource BindingProxy}}">
 
                             <MenuItem Style="{StaticResource CommandMenuItem}" DataContext="{Binding [2]}"/>
-
+                        
                         </ContextMenu>
+                        
                     </ListBox.ContextMenu>
 
                 </ListBox>
